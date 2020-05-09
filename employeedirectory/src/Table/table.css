@@ -1,0 +1,21 @@
+#title {
+    text-align: center;
+    font-family: arial, sans-serif;
+  }
+  
+  #employees {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 100%;
+  }
+
+  .employee {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .table {
+    width: 300px;
+  }
