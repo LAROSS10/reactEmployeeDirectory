@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './form.css'
 
 class Form extends Component {
@@ -15,84 +15,72 @@ class Form extends Component {
             manager: '',
 
 
+
         }
     }
 
-    handleNameChange = (event) => {
+
+
+
+
+    handleInputChange = (event) => {
+        console.log(event.target.name)
         this.setState({
-            name: event.target.value
+            [event.target.name]: event.target.value
+
         })
+
     }
 
 
-    handleEmailChange = (event) => {
-        this.setState({
-            email: event.target.value
-        })
-    }
 
-    handlePhoneChange = (event) => {
-        this.setState({
-            phone: event.target.value
-        });
-    }
 
-    handleDepartmentChange = (event) => {
-        this.setState({
-            department: event.target.value
-        });
-    }
-    handleManagerChange = (event) => {
-        this.setState({
-            manager: event.target.value
-        });
-    };
-    handleSubmit = (event) => {
-        alert(`${this.state.name} ${this.state.email} ${this.state.phone} ${this.state.department} ${this.state.manager}`)
-        event.preventDefault()
-    };
+
 
     render() {
-        const { name, email, phone, department, manager }
+
         return (
+
             <div>
-                <form onSubmit={this.handleSubmit} className="form">
+                <form className="form">
                     <h3>Employee Updates</h3>
                     <div className="employeeInfo">
-                        <label className="label"  >EID</label>
-                        <input type="text" />
+                        <label className="label"   >EID</label>
+                        <input name="eid" value={this.state.eid} onChange={this.handleInputChange} type="text" />
                     </div>
                     <div className="employeeInfo">
                         <label className="label" >Employee Name</label>
-                        <input type="text" value={name} onChange={this.handleNameChange} />
+                        <input name="name" type="text" value={this.state.name} onChange={this.handleInputChange} />
                     </div>
                     <div className="employeeInfo">
-                        <label className="label" >EMail Address</label>
-                        <input type="text" value={email} onChange={this.handleEmailChange} />
+                        <label className="label" >Email Address</label>
+                        <input name="email" type="text" value={this.state.email} onChange={this.handleInputChange} />
                     </div>
 
                     <div className="employeeInfo">
                         <label className="label" >Phone Number</label>
-                        <input type="text" value={phone} onChange={this.handlePhoneChange} />
+                        <input name="phone" type="text" value={this.state.phone} onChange={this.handleInputChange} />
                     </div>
                     <div className="employeeInfo">
                         <label className="label" >Department</label>
-                        <input type="text" value={department} onChange={this.handleDepartmentChange} />
+                        <input name="department" type="text" value={this.state.department} onChange={this.handleInputChange} />
                     </div>
                     <div className="employeeInfo">
                         <label className="label" >Manager</label>
-                        <input type="text" value={manager} onChange={this.handleManagerChange} />
+                        <input name="manager" type="text" value={this.state.manager} onChange={this.handleInputChange} />
                     </div>
                     <div className="employeeInfo">
-                        <label className="label" >Search</label>
-                        <input type="text" />
+                        <label className="label"  >Search</label>
+                        <input name="search" value={this.props.search} type="text" onChange={this.props.handleSearchChange} />
                     </div>
                     <div>
-                        <button type="submit">Submit</button>
+                        <button onClick={this.props.handleSubmit} type="submit">Submit</button>
+                        <button onClick={(event) => this.props.handleAddEmployee(event, this.state)}>Add Employee</button>
                     </div>
                 </form>
 
             </div >
+
         )
     }
 }
